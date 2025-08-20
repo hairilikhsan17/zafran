@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Akikah - Zafran Kaysan Ammar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4fc3f7;
+            --secondary: #81c784;
+            --accent: #f48fb1;
+            --dark-blue: #0c0c26;
+            --purple: #2d1b69;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #1a1a3e 50%, var(--purple) 100%);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Enhanced Space Background */
+        .space-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .shooting-star {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.8), rgba(79,195,247,0.8), rgba(255,255,255,0));
+            border-radius: 50%;
+            animation: shoot 3s linear infinite;
+            filter: blur(1px);
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(-100px) translateY(0) rotate(45deg);
+                opacity: 0;
+                width: 0;
+            }
+            10% {
+                opacity: 1;
+                width: 100px;
+            }
+            100% {
+                transform: translateX(100vw) translateY(100vh) rotate(45deg);
+                opacity: 0;
+                width: 0;
+            }
+        }
+
+        .constellation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .constellation-line {
+            position: absolute;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            transform-origin: 0 0;
+        }
+
+        /* Enhanced planets with rings */
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+            will-change: transform;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .planet1 {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #ff6b6b, #ee5a52);
+            top: 15%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .planet1::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 10px;
+            background: rgba(255, 107, 107, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(30deg);
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        }
+
+        .planet2 {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 30% 30%, #4ecdc4, #44a08d);
+            top: 60%;
+            left: 8%;
+            animation-delay: 2s;
+        }
+
+        .planet3 {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #f093fb, #f5576c);
+            top: 80%;
+            right: 15%;
+            animation-delay: 4s;
+        }
+
+        .planet3::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 8px;
+            background: rgba(240, 147, 251, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            box-shadow: 0 0 15px rgba(240, 147, 251, 0.5);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            animation: float-particle 15s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) translateX(50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Audio Control */
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+        }
+
+        .audio-control:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .audio-control i {
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        /* Section Styling with Enhanced Animations */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(100px) scale(0.8);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Different entrance animations for each section */
+        .section1 {
+            transform: translateY(100px) scale(0.9) rotateX(15deg);
+        }
+
+        .section1.visible {
+            transform: translateY(0) scale(1) rotateX(0deg);
+        }
+
+        .section2 {
+            transform: translateX(-100px) translateY(50px) scale(0.8);
+        }
+
+        .section2.visible {
+            transform: translateX(0) translateY(0) scale(1);
+        }
+
+        .section3 {
+            transform: translateX(100px) translateY(50px) scale(0.8);
+        }
+
+        .section3.visible {
+            transform: translateX(0) translateY(0) scale(1);
+        }
+
+        .section4 {
+            transform: translateY(100px) scale(0.7) rotate(5deg);
+        }
+
+        .section4.visible {
+            transform: translateY(0) scale(1) rotate(0deg);
+        }
+
+        .section5 {
+            transform: translateY(150px) scale(0.6);
+        }
+
+        .section5.visible {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Enhanced Card Design */
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3),
+                        inset 0 0 20px rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(30px) scale(0.95);
+            opacity: 0;
+            transition: all 0.6s ease-out 0.2s;
+        }
+
+        .section.visible .card {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            transform: rotate(30deg);
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Section 1 - Header */
+        .section1 .bismillah {
+            font-family: 'Amiri', serif;
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--primary);
+            text-shadow: 0 0 15px rgba(79, 195, 247, 0.7);
+            letter-spacing: 2px;
+        }
+
+        .section1 .main-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 42px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #4fc3f7, #29b6f6, #03a9f4, #81c784);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section1 .main-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .section1 .subtitle {
+            color: var(--secondary);
+            font-size: 18px;
+            font-weight: 300;
+            margin-top: 10px;
+        }
+
+        /* Section 2 - Baby Info */
+        .section2 .baby-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary) 0%, #29b6f6 100%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 20px 40px rgba(79, 195, 247, 0.4);
+            animation: glow 2s ease-in-out infinite alternate;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .section2 .baby-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .section2 .baby-icon::before {
+            content: '';
+            position: absolute;
+            width: 140%;
+            height: 140%;
+            border-radius: 50%;
+            border: 2px solid rgba(79, 195, 247, 0.3);
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 20px 40px rgba(79, 195, 247, 0.4); }
+            100% { box-shadow: 0 25px 50px rgba(79, 195, 247, 0.8), 0 0 60px rgba(79, 195, 247, 0.6); }
+        }
+
+        .section2 .baby-name {
+            font-family: 'Orbitron', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(79, 195, 247, 0.6);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section2 .baby-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .section2 .birth-date {
+            font-size: 18px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .section2 .birth-meaning {
+            font-size: 16px;
+            color: #b0bec5;
+            font-style: italic;
+            line-height: 1.6;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 15px;
+            border-left: 3px solid var(--accent);
+        }
+
+        /* Section 3 - Photo */
+        .section3 .photo-frame {
+            width: 220px;
+            height: 220px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4),
+                        0 0 60px rgba(102, 126, 234, 0.3);
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .section3 .photo-frame:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.6),
+                        0 0 80px rgba(102, 126, 234, 0.4);
+        }
+
+        .section3 .photo-frame::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(255,255,255,0.3), transparent 30%);
+            animation: rotate 4s linear infinite;
+        }
+
+        .section3 .photo-frame img {
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .section3 .photo-frame:hover img {
+            transform: scale(1.05);
+        }
+
+        .section3 .photo-frame::before {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .section3 .photo-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section3 .photo-instruction {
+            color: #b0bec5;
+            font-size: 14px;
+            margin-top: 15px;
+            opacity: 0.7;
+        }
+
+        /* Section 4 - Event Details */
+        .section4 .event-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section4 .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .section4 .event-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section4 .event-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .section4 .invitation-text {
+            color: #b0bec5;
+            font-size: 15px;
+            line-height: 1.8;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px 18px;
+            margin: 10px 0 20px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .section4 .event-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 15px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .section4 .event-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .section4 .event-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            width: 30px;
+            color: var(--accent);
+        }
+
+        .section4 .event-details {
+            text-align: left;
+            flex: 1;
+        }
+
+        .section4 .event-details strong {
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .section4 .event-details em {
+            color: #b0bec5;
+            font-size: 14px;
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            min-width: 60px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .countdown-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .countdown-label {
+            font-size: 12px;
+            color: #b0bec5;
+        }
+
+        /* Section 5 - Dua & Footer */
+        .section5 .dua-box {
+            background: rgba(129, 199, 132, 0.15);
+            border: 1px solid rgba(129, 199, 132, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #a5d6a7;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section5 .dua-box::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 60px;
+            font-family: 'Amiri', serif;
+            color: rgba(129, 199, 132, 0.2);
+            line-height: 1;
+        }
+
+        .section5 .dua-box strong {
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .section5 .dua-box em {
+            display: block;
+            margin-top: 15px;
+            text-align: right;
+            font-size: 14px;
+            color: rgba(165, 214, 167, 0.8);
+        }
+
+        .section5 .footer-text {
+            color: #b0bec5;
+            font-size: 15px;
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section5 .thanks {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 18px;
+            margin-top: 25px;
+            text-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        /* Navigation dots */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 12px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+
+        .dot.active {
+            background: var(--primary);
+            box-shadow: 0 0 15px rgba(79, 195, 247, 0.8);
+            transform: scale(1.2);
+        }
+
+        .dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(79, 195, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dot:hover::after {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Progress scroll bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Floating action button for navigation */
+        .nav-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-button i {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                max-width: 95%;
+            }
+            
+            .card {
+                padding: 30px 20px;
+            }
+            
+            .section1 .main-title {
+                font-size: 32px;
+            }
+            
+            .section2 .baby-name {
+                font-size: 26px;
+            }
+            
+            .nav-dots {
+                right: 20px;
+            }
+            
+            .nav-button {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .audio-control {
+                bottom: 20px;
+                left: 20px;
+            }
+            
+            .section4 .event-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .section4 .event-icon {
+                margin-right: 0;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Space Background -->
+    <div class="space-bg">
+        <div class="stars"></div>
+        <div class="constellation"></div>
+        <div class="particles"></div>
+        <div class="planet planet1"></div>
+        <div class="planet planet2"></div>
+        <div class="planet planet3"></div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Audio Control -->
+    <div class="audio-control" id="audioControl">
+        <i class="fas fa-volume-mute"></i>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="dot active" onclick="scrollToSection(0)"></div>
+        <div class="dot" onclick="scrollToSection(1)"></div>
+        <div class="dot" onclick="scrollToSection(2)"></div>
+        <div class="dot" onclick="scrollToSection(3)"></div>
+        <div class="dot" onclick="scrollToSection(4)"></div>
+    </div>
+
+    <!-- Navigation Button -->
+    <div class="nav-button" id="nextButton">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+
+    <div class="container">
+        <!-- Section 1: Header -->
+        <section class="section section1 visible">
+            <div class="card">
+                <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+                <h1 class="main-title">Akikah</h1>
+                <p class="subtitle">Syukuran Kelahiran Putra Kami</p>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Hari</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Jam</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Menit</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Detik</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Baby Information -->
+        <section class="section section2">
+            <div class="card">
+                <div class="baby-icon">👶</div>
+                <h2 class="baby-name">Zafran Kaysan Ammar</h2>
+                <div class="birth-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    Lahir pada 12 Agustus 2025
+                </div>
+                <div class="birth-meaning">
+                    "Zafran" = Saffron (rempah yang berharga dan mulia)<br>
+                    "Kaysan" = Yang bijaksana dan berpikiran tajam<br>
+                    "Ammar" = Yang membangun, membuat kemakmuran
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Photo -->
+        <section class="section section3">
+            <div class="card">
+                        <div class="photo-frame">
+            <img src="zafran.jpeg" alt="Foto Zafran Kaysan Ammar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        </div>
+        
+        <p style="color: #b0bec5; font-size: 14px; margin-top: 20px;">
+            Buah hati yang telah Allah amanahkan kepada kami
+        </p>
+        
+    </div>
+</div>
+</section>
+
+<!-- Section 4: Event Details -->
+<section class="section section4">
+<div class="card">
+    <h3 class="event-title">Detail Acara</h3>
+    <p class="invitation-text">Dengan memohon rahmat dan ridho Allah kami mengundang bapak/ibu, saudara/i untuk berkenan hadir serta memberikan do'a dalam acara syukuran atas kelahiran buah hati kami insya Allah akan dilaksanakan pada :</p>
+    <div class="event-card">
+        <div class="event-item">
+            <span class="event-icon">📅</span>
+            <div class="event-details">
+                <strong>Kamis, 22 Agustus 2025</strong>
+                <em>Bertepatan dengan 27 Muharram 1447 H</em>
+            </div>
+        </div>
+        <div class="event-item">
+            <span class="event-icon">⏰</span>
+            <div class="event-details">
+                <strong>Pukul 10:00 - 14:00 WIB</strong>
+                <em>Acara puncak pada pukul 11:30 WIB</em>
+            </div>
+        </div>
+        <div class="event-item">
+            <span class="event-icon">📍</span>
+            <div class="event-details">
+                <strong>Rumah Keluarga Ammar</strong>
+                <em>Jl. Kenangan Indah No. 123, Kota Bahagia</em>
+            </div>
+        </div>
+        <div class="event-item">
+            <span class="event-icon">🎯</span>
+            <div class="event-details">
+                <strong>Pemotongan Akikah & Syukuran</strong>
+                <em>Tasyakuran dan doa bersama</em>
+            </div>
+        </div>
+    </div>
+    <div class="map-container" style="margin-top: 20px; border-radius: 15px; overflow: hidden; height: 220px; background: rgba(255,255,255,0.1);">
+        <iframe
+            src="https://www.google.com/maps?hl=id&q=-4.9442739,120.0388929&z=17&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Bengkel PUTRA JAYA KUBOTA Berru1"></iframe>
+    </div>
+    <div style="margin-top: 10px; text-align: center;">
+        <a href="https://www.google.com/maps/place/Bengkel+PUTRA+JAYA+KUBOTA+Berru1/@-4.9439095,120.0365522,16.25z/data=!4m6!3m5!1s0x2dbe7d8202b0a501:0x3a7f03b22264010f!8m2!3d-4.9442739!4d120.0388929!16s%2Fg%2F11nn2dd4f_?hl=id&entry=ttu&g_ep=EgoyMDI1MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: underline;">Buka di Google Maps</a>
+    </div>
+</div>
+</section>
+
+<!-- Section 5: Dua & Footer -->
+<section class="section section5">
+<div class="card">
+    <div class="dua-box">
+        <strong>Hadits tentang Akikah:</strong><br><br>
+        "Setiap anak tergadaikan dengan akikahnya, disembelih untuknya pada hari ketujuh, dicukur rambutnya, dan diberi nama."<br><br>
+        <em>- HR. Ahmad, Abu Dawud, Tirmidzi</em>
+    </div>
+    
+    <div class="footer-text">
+        Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dalam acara syukuran akikah putra kami.
+        <br><br>
+        Semoga dengan berkah doa dari Bapak/Ibu sekalian, Zafran Kaysan Ammar dapat tumbuh menjadi anak yang shalih dan berbakti kepada kedua orang tua serta berguna bagi agama, nusa, dan bangsa.
+    </div>
+    
+    <div class="thanks">✨ Jazakumullahu Khairan ✨</div>
+    
+    <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px;">
+        <div class="social-icon" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
+            <i class="fab fa-whatsapp" style="color: var(--secondary);"></i>
+        </div>
+        <div class="social-icon" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
+            <i class="fas fa-map-marker-alt" style="color: var(--accent);"></i>
+        </div>
+        <div class="social-icon" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
+            <i class="fas fa-gift" style="color: var(--primary);"></i>
+        </div>
+    </div>
+</div>
+</section>
+</div>
+
+<audio id="backgroundAudio" loop>
+<source src="https://assets.mixkit.co/music/preview/mixkit-spirit-of-the-east-528.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Generate stars
+function createStars() {
+const starsContainer = document.querySelector('.stars');
+for (let i = 0; i < 250; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.width = Math.random() * 3 + 'px';
+    star.style.height = star.style.width;
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 2 + 's';
+    starsContainer.appendChild(star);
+}
+}
+
+// Generate constellations
+function createConstellations() {
+const container = document.querySelector('.constellation');
+for (let i = 0; i < 15; i++) {
+    const line = document.createElement('div');
+    line.className = 'constellation-line';
+    
+    const startX = Math.random() * 100;
+    const startY = Math.random() * 100;
+    const length = Math.random() * 10 + 5;
+    const angle = Math.random() * 360;
+    
+    line.style.width = length + 'vw';
+    line.style.left = startX + 'vw';
+    line.style.top = startY + 'vh';
+    line.style.transform = `rotate(${angle}deg)`;
+    line.style.opacity = Math.random() * 0.3 + 0.1;
+    
+    container.appendChild(line);
+}
+}
+
+// Generate particles
+function createParticles() {
+const container = document.querySelector('.particles');
+for (let i = 0; i < 30; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    const size = Math.random() * 4 + 1;
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    particle.style.left = Math.random() * 100 + 'vw';
+    particle.style.animationDelay = Math.random() * 15 + 's';
+    particle.style.animationDuration = Math.random() * 10 + 15 + 's';
+    
+    // Random colors
+    const colors = [
+        'rgba(79, 195, 247, 0.7)',
+        'rgba(129, 199, 132, 0.7)',
+        'rgba(244, 143, 177, 0.7)',
+        'rgba(255, 255, 255, 0.7)'
+    ];
+    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+    
+    container.appendChild(particle);
+}
+}
+
+// Generate shooting stars
+function createShootingStars() {
+const spaceBg = document.querySelector('.space-bg');
+setInterval(() => {
+    if (Math.random() > 0.7) { // Only create sometimes
+        const shootingStar = document.createElement('div');
+        shootingStar.className = 'shooting-star';
+        shootingStar.style.left = Math.random() * 10 + 'vw';
+        shootingStar.style.top = Math.random() * 20 + 'vh';
+        shootingStar.style.animationDuration = Math.random() * 2 + 2 + 's';
+        spaceBg.appendChild(shootingStar);
+        
+        setTimeout(() => {
+            shootingStar.remove();
+        }, 3000);
+    }
+}, 2000);
+}
+
+// Audio control
+function setupAudio() {
+const audio = document.getElementById('backgroundAudio');
+const audioControl = document.getElementById('audioControl');
+let isPlaying = false;
+
+// Try to play audio with user interaction
+audioControl.addEventListener('click', function() {
+    if (isPlaying) {
+        audio.pause();
+        audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    } else {
+        audio.play().catch(e => {
+            console.log('Audio play failed:', e);
+        });
+        audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+    }
+    isPlaying = !isPlaying;
+});
+
+// Enable audio after any user interaction
+document.body.addEventListener('click', function() {
+    if (audio.paused) {
+        audio.play().then(() => {
+            isPlaying = true;
+            audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+        }).catch(e => {
+            // Audio play failed, need user interaction
+        });
+    }
+}, { once: true });
+}
+
+// Countdown timer
+function setupCountdown() {
+const eventDate = new Date('August 22, 2025 10:00:00').getTime();
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = eventDate - now;
+    
+    if (distance < 0) {
+        document.getElementById('countdown').innerHTML = '<div style="color: var(--secondary); font-size: 18px;">Acara telah berlangsung! Terima kasih.</div>';
+        return;
+    }
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    document.getElementById('days').innerText = days.toString().padStart(2, '0');
+    document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+}
+
+// Progress scroll bar
+function setupProgressBar() {
+window.addEventListener('scroll', function() {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('progressBar').style.width = scrolled + '%';
+});
+}
+
+// Navigation
+function setupNavigation() {
+const nextButton = document.getElementById('nextButton');
+let currentSection = 0;
+const sections = document.querySelectorAll('.section');
+
+nextButton.addEventListener('click', function() {
+    if (currentSection < sections.length - 1) {
+        currentSection++;
+        scrollToSection(currentSection);
+    } else {
+        currentSection = 0;
+        scrollToSection(0);
+    }
+    
+    // Update button icon
+    if (currentSection === sections.length - 1) {
+        nextButton.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    } else {
+        nextButton.innerHTML = '<i class="fas fa-chevron-down"></i>';
+    }
+});
+}
+
+// Enhanced scroll animations with enter/exit effects
+function handleScroll() {
+const sections = document.querySelectorAll('.section');
+const dots = document.querySelectorAll('.dot');
+const nextButton = document.getElementById('nextButton');
+const scrollTop = window.pageYOffset;
+const windowHeight = window.innerHeight;
+
+let currentSection = -1;
+
+sections.forEach((section, index) => {
+    const rect = section.getBoundingClientRect();
+    const sectionTop = rect.top + scrollTop;
+    const sectionHeight = rect.height;
+    const sectionBottom = sectionTop + sectionHeight;
+    
+    // Calculate if section is in viewport
+    const isInViewport = rect.top < windowHeight * 0.7 && rect.bottom > windowHeight * 0.3;
+    
+    // Remove all animation classes first
+    section.classList.remove('visible', 'exit-up', 'exit-down');
+    
+    if (isInViewport) {
+        // Section is visible - show enter animation
+        section.classList.add('visible');
+        currentSection = index;
+        
+        // Update active dot
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots[index]) {
+            dots[index].classList.add('active');
+        }
+        
+        // Update next button icon
+        if (index === sections.length - 1) {
+            nextButton.innerHTML = '<i class="fas fa-chevron-up"></i>';
+        } else {
+            nextButton.innerHTML = '<i class="fas fa-chevron-down"></i>';
+        }
+    } else if (rect.bottom < 0) {
+        // Section has scrolled past - show exit up animation
+        section.classList.add('visible', 'exit-up');
+    } else if (rect.top > windowHeight) {
+        // Section is below viewport - show exit down animation
+        section.classList.add('exit-down');
+    }
+});
+
+// If no section is in viewport, find the closest one
+if (currentSection === -1) {
+    let closestSection = 0;
+    let closestDistance = Infinity;
+    
+    sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.top);
+        
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            closestSection = index;
+        }
+    });
+    
+    currentSection = closestSection;
+}
+}
+
+// Throttled scroll handler for better performance
+let ticking = false;
+function requestTick() {
+if (!ticking) {
+    requestAnimationFrame(handleScroll);
+    ticking = true;
+    setTimeout(() => { ticking = false; }, 16); // ~60fps
+}
+}
+
+// Scroll to section
+function scrollToSection(index) {
+const sections = document.querySelectorAll('.section');
+if (sections[index]) {
+    sections[index].scrollIntoView({ behavior: 'smooth' });
+}
+}
+
+// Photo frame click handler
+function setupPhotoFrame() {
+const photoFrame = document.querySelector('.photo-frame');
+if (photoFrame) {
+    photoFrame.addEventListener('click', function() {
+        this.innerHTML = '<div class="photo-text">📷<br><br>Foto akan segera<br>ditampilkan</div>';
+        // In a real implementation, this would show a modal with the actual photo
+    });
+}
+}
+
+// Social icons interaction
+function setupSocialIcons() {
+const socialIcons = document.querySelectorAll('.social-icon');
+socialIcons.forEach(icon => {
+    icon.addEventListener('click', function() {
+        this.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            this.style.transform = '';
+        }, 300);
+        
+        // In a real implementation, this would perform actual actions
+        // like opening WhatsApp, showing a map, or opening a gift registry
+    });
+});
+}
+
+// Initialize everything
+document.addEventListener('DOMContentLoaded', function() {
+createStars();
+createConstellations();
+createParticles();
+createShootingStars();
+setupAudio();
+setupCountdown();
+setupProgressBar();
+setupNavigation();
+setupPhotoFrame();
+setupSocialIcons();
+
+// Use throttled scroll handler
+window.addEventListener('scroll', requestTick);
+handleScroll(); // Initial call
+
+// Add staggered animations for card elements
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const section = entry.target;
+            const elements = section.querySelectorAll('.baby-icon, .baby-name, .birth-date, .photo-frame, .event-card, .dua-box, .event-item, .countdown-item');
+            
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0) scale(1)';
+                }, index * 150);
+            });
+        }
+    });
+}, {
+    threshold: 0.3,
+    rootMargin: '0px 0px -100px 0px'
+});
+
+// Observe all sections
+document.querySelectorAll('.section').forEach(section => {
+    observer.observe(section);
+});
+});
+</script>
+</body>
+</html>
+                
