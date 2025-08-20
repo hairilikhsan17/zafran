@@ -197,6 +197,81 @@
             }
         }
 
+        /* Moon with floating animation */
+        .moon {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, #f5f5f5, #e0e0e0, #c0c0c0);
+            border-radius: 50%;
+            top: 25%;
+            left: 5%;
+            cursor: pointer;
+            box-shadow: 
+                0 0 30px rgba(255, 255, 255, 0.8),
+                0 0 60px rgba(255, 255, 255, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.3);
+            animation: moonFloat 12s ease-in-out infinite;
+            transition: all 0.3s ease;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .moon:hover {
+            transform: scale(1.1);
+            box-shadow: 
+                0 0 40px rgba(255, 255, 255, 1),
+                0 0 80px rgba(255, 255, 255, 0.6),
+                inset 0 0 25px rgba(255, 255, 255, 0.4);
+        }
+
+        .moon-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #333;
+            font-size: 8px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.2;
+            width: 80px;
+            opacity: 0.8;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+        }
+
+        @keyframes moonFloat {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg); 
+            }
+            25% { 
+                transform: translateY(-15px) translateX(5px) rotate(2deg); 
+            }
+            50% { 
+                transform: translateY(-25px) translateX(-3px) rotate(-1deg); 
+            }
+            75% { 
+                transform: translateY(-10px) translateX(8px) rotate(3deg); 
+            }
+        }
+
+        /* Moon craters for realistic look */
+        .moon::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: rgba(200, 200, 200, 0.6);
+            border-radius: 50%;
+            top: 20%;
+            left: 25%;
+            box-shadow: 
+                35px 15px 0 rgba(180, 180, 180, 0.5),
+                60px 40px 0 rgba(190, 190, 190, 0.4),
+                25px 60px 0 rgba(170, 170, 170, 0.6);
+        }
+
         /* Container */
         .container {
             max-width: 450px;
@@ -734,6 +809,143 @@
             animation: pulse 2s infinite;
         }
 
+        /* Section 6 - About & Photo Gallery */
+        .section6 {
+            transform: translateY(100px) scale(0.8) rotateY(5deg);
+        }
+
+        .section6.visible {
+            transform: translateY(0) scale(1) rotateY(0deg);
+        }
+
+        .section6 .about-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-shadow: 0 0 15px rgba(79, 195, 247, 0.6);
+            text-align: center;
+        }
+
+        .section6 .about-description {
+            color: #b0bec5;
+            font-size: 16px;
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 3px solid var(--accent);
+        }
+
+        /* Photo Gallery Container */
+        .photo-gallery-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .photo-gallery {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 15px;
+        }
+
+        .photo-item {
+            min-width: 300px;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Gallery Controls */
+        .gallery-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .gallery-btn {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: var(--primary);
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(79, 195, 247, 0.3);
+        }
+
+        .gallery-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Gallery Dots */
+        .gallery-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .gallery-dots .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-dots .dot.active {
+            background: var(--primary);
+            box-shadow: 0 0 10px rgba(79, 195, 247, 0.6);
+            transform: scale(1.2);
+        }
+
+        .gallery-dots .dot:hover {
+            background: rgba(79, 195, 247, 0.5);
+            transform: scale(1.1);
+        }
+
         /* Navigation dots */
         .nav-dots {
             position: fixed;
@@ -883,6 +1095,9 @@
         <div class="planet planet1"></div>
         <div class="planet planet2"></div>
         <div class="planet planet3"></div>
+        <div class="moon" id="moon" onclick="showMoonMessage()">
+            <div class="moon-text">hadiah website undangan untuk zafran dari hairilikhsan17</div>
+        </div>
     </div>
 
     <!-- Progress Bar -->
@@ -892,7 +1107,7 @@
 
     <!-- Audio Control -->
     <div class="audio-control" id="audioControl">
-        <i class="fas fa-volume-mute"></i>
+        <i class="fas fa-volume-up"></i>
     </div>
 
     <!-- Navigation Dots -->
@@ -902,6 +1117,7 @@
         <div class="dot" onclick="scrollToSection(2)"></div>
         <div class="dot" onclick="scrollToSection(3)"></div>
         <div class="dot" onclick="scrollToSection(4)"></div>
+        <div class="dot" onclick="scrollToSection(5)"></div>
     </div>
 
     <!-- Navigation Button -->
@@ -1051,10 +1267,66 @@
     </div>
 </div>
 </section>
+
+<!-- Section 6: About & Photo Gallery -->
+<section class="section section6">
+    <div class="card">
+        <h3 class="about-title">About Zafran</h3>
+        <p class="about-description">
+            Kenangan indah perjalanan Zafran dari dalam kandungan hingga sekarang. 
+            Setiap foto menceritakan kisah cinta dan kebahagiaan keluarga kami.
+        </p>
+        
+        <div class="photo-gallery-container">
+            <div class="photo-gallery" id="photoGallery">
+                <div class="photo-item">
+                    <img src="foto1.jpg" alt="Foto Zafran 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byAxPC90ZXh0Pgo8L3N2Zz4='">
+                </div>
+                <div class="photo-item">
+                    <img src="foto2.jpg" alt="Foto Zafran 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNzY0YmEyIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byAyPC90ZXh0Pgo8L3N2Zz4='">
+                </div>
+                <div class="photo-item">
+                    <img src="foto3.jpg" alt="Foto Zafran 3" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNGZjM2Y3Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byAzPC90ZXh0Pgo8L3N2Zz4='">
+                </div>
+                <div class="photo-item">
+                    <img src="foto4.jpg" alt="Foto Zafran 4" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjODFjNzg0Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byA0PC90ZXh0Pgo8L3N2Zz4='">
+                </div>
+                <div class="photo-item">
+                    <img src="foto5.jpg" alt="Foto Zafran 5" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjQ4ZmIxIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byA1PC90ZXh0Pgo8L3N2Zz4='">
+                </div>
+                <div class="photo-item">
+                    <img src="foto6.jpg" alt="Foto Zafran 6" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZmY2YjZiIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byA2PC90ZXh0Pgo8L3N2Zz4='">
+                </div>
+                <div class="photo-item">
+                    <img src="foto7.jpg" alt="Foto Zafran 7" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNGVjZGM0Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byA3PC90ZXh0Pgo8L3N2Zz4='">
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-controls">
+            <button class="gallery-btn prev-btn" onclick="moveGallery('prev')">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="gallery-btn next-btn" onclick="moveGallery('next')">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="gallery-dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+            <span class="dot" onclick="goToSlide(3)"></span>
+            <span class="dot" onclick="goToSlide(4)"></span>
+            <span class="dot" onclick="goToSlide(5)"></span>
+            <span class="dot" onclick="goToSlide(6)"></span>
+        </div>
+    </div>
+</section>
 </div>
 
-<audio id="backgroundAudio" loop>
-<source src="https://assets.mixkit.co/music/preview/mixkit-spirit-of-the-east-528.mp3" type="audio/mpeg">
+<audio id="backgroundAudio" loop autoplay muted preload="auto">   
+<source src="musik.mp4" type="audio/mp4">
 </audio>
 
 <script>
@@ -1147,31 +1419,110 @@ const audio = document.getElementById('backgroundAudio');
 const audioControl = document.getElementById('audioControl');
 let isPlaying = false;
 
+// Set audio volume and ensure it loops
+audio.volume = 0.5;
+audio.loop = true;
+
 // Try to play audio with user interaction
 audioControl.addEventListener('click', function() {
     if (isPlaying) {
         audio.pause();
         audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        isPlaying = false;
     } else {
-        audio.play().catch(e => {
-            console.log('Audio play failed:', e);
-        });
-        audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
-    }
-    isPlaying = !isPlaying;
-});
-
-// Enable audio after any user interaction
-document.body.addEventListener('click', function() {
-    if (audio.paused) {
         audio.play().then(() => {
             isPlaying = true;
             audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
         }).catch(e => {
-            // Audio play failed, need user interaction
+            console.log('Audio play failed:', e);
         });
     }
-}, { once: true });
+});
+
+// Aggressive auto-play function
+function startMusic() {
+    // Unmute audio first
+    audio.muted = false;
+    
+    // Try multiple methods to start audio
+    const playPromise = audio.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            isPlaying = true;
+            audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+            console.log('Music started successfully!');
+        }).catch(e => {
+            console.log('Auto-play failed:', e);
+            // Try alternative methods
+            setTimeout(() => {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                }).catch(e2 => {
+                    console.log('Second attempt failed:', e2);
+                    audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    isPlaying = false;
+                });
+            }, 100);
+        });
+    }
+}
+
+// Try to start music immediately when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    startMusic();
+});
+
+// Try to start music when window loads
+window.addEventListener('load', function() {
+    startMusic();
+});
+
+// Try to start music on any possible event
+const events = ['click', 'touchstart', 'mousedown', 'keydown', 'scroll', 'wheel'];
+events.forEach(event => {
+    document.addEventListener(event, function() {
+        if (!isPlaying) {
+            startMusic();
+        }
+    }, { once: true });
+});
+
+// Try to start music periodically
+let attempts = 0;
+const maxAttempts = 10;
+const attemptInterval = setInterval(() => {
+    if (!isPlaying && attempts < maxAttempts) {
+        attempts++;
+        startMusic();
+    } else if (attempts >= maxAttempts) {
+        clearInterval(attemptInterval);
+    }
+}, 200);
+
+// Ensure audio continues playing when it ends
+audio.addEventListener('ended', function() {
+    if (isPlaying) {
+        audio.play().catch(e => {
+            console.log('Audio loop failed:', e);
+        });
+    }
+});
+
+// Try to start music when audio is loaded
+audio.addEventListener('canplaythrough', function() {
+    if (!isPlaying) {
+        startMusic();
+    }
+});
+
+// Try to start music when audio metadata is loaded
+audio.addEventListener('loadedmetadata', function() {
+    if (!isPlaying) {
+        startMusic();
+    }
+});
 }
 
 // Countdown timer
@@ -1330,6 +1681,60 @@ if (photoFrame) {
         // In a real implementation, this would show a modal with the actual photo
     });
 }
+
+// Moon click handler
+function showMoonMessage() {
+    const moon = document.getElementById('moon');
+    const originalText = moon.querySelector('.moon-text').innerHTML;
+    
+    // Create and show message
+    const message = document.createElement('div');
+    message.innerHTML = 'ini ini bulan harus melayang layang yahhh';
+    message.style.cssText = `
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #333;
+        font-size: 10px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.3;
+        width: 90px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 8px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        z-index: 20;
+        animation: messagePop 0.5s ease-out;
+    `;
+    
+    // Add animation keyframes
+    if (!document.querySelector('#moonMessageStyles')) {
+        const style = document.createElement('style');
+        style.id = 'moonMessageStyles';
+        style.textContent = `
+            @keyframes messagePop {
+                0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+                50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+                100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    moon.appendChild(message);
+    
+    // Remove message after 3 seconds
+    setTimeout(() => {
+        message.style.animation = 'messagePop 0.5s ease-in reverse';
+        setTimeout(() => {
+            if (message.parentNode) {
+                message.remove();
+            }
+        }, 500);
+    }, 3000);
+}
 }
 
 // Social icons interaction
@@ -1348,6 +1753,74 @@ socialIcons.forEach(icon => {
 });
 }
 
+// Photo Gallery Auto-slide functionality
+let currentSlide = 0;
+let autoSlideInterval;
+const totalSlides = 7;
+
+function setupPhotoGallery() {
+    // Start auto-slide
+    startAutoSlide();
+    
+    // Pause auto-slide on hover
+    const galleryContainer = document.querySelector('.photo-gallery-container');
+    if (galleryContainer) {
+        galleryContainer.addEventListener('mouseenter', pauseAutoSlide);
+        galleryContainer.addEventListener('mouseleave', startAutoSlide);
+    }
+}
+
+function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateGallery();
+    }, 5000); // 5 seconds
+}
+
+function pauseAutoSlide() {
+    if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+    }
+}
+
+function updateGallery() {
+    const gallery = document.getElementById('photoGallery');
+    const dots = document.querySelectorAll('.gallery-dots .dot');
+    
+    if (gallery) {
+        const translateX = -currentSlide * 315; // 300px width + 15px gap
+        gallery.style.transform = `translateX(${translateX}px)`;
+    }
+    
+    // Update active dot
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+function moveGallery(direction) {
+    if (direction === 'next') {
+        currentSlide = (currentSlide + 1) % totalSlides;
+    } else {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    }
+    
+    updateGallery();
+    
+    // Restart auto-slide timer
+    pauseAutoSlide();
+    startAutoSlide();
+}
+
+function goToSlide(slideIndex) {
+    currentSlide = slideIndex;
+    updateGallery();
+    
+    // Restart auto-slide timer
+    pauseAutoSlide();
+    startAutoSlide();
+}
+
 // Initialize everything
 document.addEventListener('DOMContentLoaded', function() {
 createStars();
@@ -1360,6 +1833,7 @@ setupProgressBar();
 setupNavigation();
 setupPhotoFrame();
 setupSocialIcons();
+setupPhotoGallery();
 
 // Use throttled scroll handler
 window.addEventListener('scroll', requestTick);
