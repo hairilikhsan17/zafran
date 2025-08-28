@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Akikah - Zafran Kaysan Ammar</title>
+    <title>Undangan Aqiqah - Zafran Kaysan Ammar</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -1084,6 +1084,174 @@
                 flex-wrap: wrap;
             }
         }
+ /* ===== Running Gallery ===== */
+.running-gallery{
+  display:grid;
+  grid-template-rows:repeat(8,auto);
+  gap:14px;
+  margin-top:12px;
+}
+
+.running-row{
+  --speed: 28s;           /* bisa kamu cepatkan/perlambat per baris di JS */
+  position:relative;
+  overflow:hidden;
+  padding:8px 0;
+  /* efek fade kiri-kanan biar manis */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%);
+}
+
+.running-track{
+  display:flex;
+  gap:10px;
+  width:max-content;     /* biar selebar kontennya */
+  animation: scroll-left var(--speed) linear infinite;
+  will-change: transform;
+}
+
+.running-row.reverse .running-track{
+  animation-name: scroll-right;
+}
+
+@keyframes scroll-left{
+  from{ transform: translateX(0); }
+  to  { transform: translateX(-50%); } /* karena konten di-dobel */
+}
+@keyframes scroll-right{
+  from{ transform: translateX(-50%); }
+  to  { transform: translateX(0); }
+}
+
+/* Kartu foto */
+.running-item{
+  flex:0 0 auto;
+  width:120px;           /* lebar tiap foto */
+  aspect-ratio: 1 / 1;   /* kotak, rapi */
+  border-radius:14px;
+  overflow:hidden;
+  background:#eef2f4;
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  border:1px solid rgba(0,0,0,.05);
+  transition: transform .2s ease, box-shadow .2s ease;
+  cursor:pointer;
+}
+.running-item:hover{
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+}
+.running-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* ===== Lightbox ===== */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.75);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  z-index:9999;
+}
+.lightbox.show{ display:flex; }
+.lightbox img{
+  max-width:min(1100px, 92vw);
+  max-height:86vh;
+  border-radius:16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+  background:#fff;
+}
+.lightbox-close{
+  position:absolute;
+  top:18px;
+  right:22px;
+  font-size:36px;
+  line-height:1;
+  background:transparent;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* ===== Responsive tweak ===== */
+@media (max-width: 1024px){
+  .running-item{ width:100px; }
+}
+@media (max-width: 640px){
+  .running-item{ width:86px; }
+  .running-row{ --speed: 22s; }
+}
+
+/* ====== TYPOGRAFI ====== */
+
+/* Judul galeri dengan glow biru */
+.gallery-title{
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #38bdf8;                 /* biru neon */
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 0 0 6px #38bdf8, 0 0 12px #0ea5e9;
+  position: relative;
+}
+.gallery-title::after{
+  content: "";
+  display: block;
+  width: 80px;
+  height: 2px;
+  margin: 6px auto 0;
+  background: linear-gradient(to right, transparent, #38bdf8, transparent);
+  border-radius: 2px;
+}
+
+/* Deskripsi galeri */
+.gallery-description{
+  font-family: "Exo 2", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #d1d5db;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 18px;
+  line-height: 1.6;
+}
+
+/* Judul umum elegan */
+.about-title {
+  font-family: "Amiri", serif;     /* nuansa elegan arabic/classic */
+  font-weight: 700;
+  font-size: 1.7rem;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+/* Deskripsi umum */
+.about-description {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+  max-width: 760px;
+  margin-bottom: 12px;
+}
+
+/* Heading besar */
+h1, h2 {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #1e293b;
+}
+
+
     </style>
 </head>
 <body>
@@ -1118,6 +1286,8 @@
         <div class="dot" onclick="scrollToSection(3)"></div>
         <div class="dot" onclick="scrollToSection(4)"></div>
         <div class="dot" onclick="scrollToSection(5)"></div>
+        <div class="dot" onclick="scrollToSection(6)"></div>
+        
     </div>
 
     <!-- Navigation Button -->
@@ -1130,7 +1300,7 @@
         <section class="section section1 visible">
             <div class="card">
                 <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
-                <h1 class="main-title">Akikah</h1>
+                <h1 class="main-title">Aqiqah</h1>
                 <p class="subtitle">Syukuran Kelahiran Putra Kami</p>
                 <div class="countdown" id="countdown">
                     <div class="countdown-item">
@@ -1280,25 +1450,25 @@
         <div class="photo-gallery-container">
             <div class="photo-gallery" id="photoGallery">
                 <div class="photo-item">
-                    <img src="foto1.jpg" alt="Foto Zafran 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byAxPC90ZXh0Pgo8L3N2Zz4='">
+                    <img src="perjalanan/perjalanan1.jpeg" alt="Foto Zafran 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byAxPC90ZXh0Pgo8L3N2Zz4='">
                 </div>
                 <div class="photo-item">
-                    <img src="foto2.jpg" alt="Foto Zafran 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNzY0YmEyIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byAyPC90ZXh0Pgo8L3N2Zz4='">
+                    <img src="perjalanan/perjalanan2.jpeg" alt="Foto Zafran 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNzY0YmEyIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byAyPC90ZXh0Pgo8L3N2Zz4='">
                 </div>
                 <div class="photo-item">
-                    <img src="foto3.jpg" alt="Foto Zafran 3" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNGZjM2Y3Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byAzPC90ZXh0Pgo8L3N2Zz4='">
+                    <img src="perjalanan/perjalanan3.jpeg" alt="Foto Zafran 3" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNGZjM2Y3Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byAzPC90ZXh0Pgo8L3N2Zz4='">
                 </div>
                 <div class="photo-item">
-                    <img src="foto4.jpg" alt="Foto Zafran 4" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjODFjNzg0Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byA0PC90ZXh0Pgo8L3N2Zz4='">
+                    <img src="perjalanan/perjalanan4.jpeg" alt="Foto Zafran 4" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjODFjNzg0Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byA0PC90ZXh0Pgo8L3N2Zz4='">
                 </div>
                 <div class="photo-item">
-                    <img src="foto5.jpg" alt="Foto Zafran 5" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjQ4ZmIxIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byA1PC90ZXh0Pgo8L3N2Zz4='">
+                    <img src="perjalanan/perjalanan5.jpeg" alt="Foto Zafran 5" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjQ4ZmIxIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byA1PC90ZXh0Pgo8L3N2Zz4='">
                 </div>
                 <div class="photo-item">
-                    <img src="foto6.jpg" alt="Foto Zafran 6" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZmY2YjZiIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byA2PC90ZXh0Pgo8L3N2Zz4='">
+                    <img src="perjalanan/perjalanan6.jpeg" alt="Foto Zafran 6" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZmY2YjZiIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byA2PC90ZXh0Pgo8L3N2Zz4='">
                 </div>
                 <div class="photo-item">
-                    <img src="foto7.jpg" alt="Foto Zafran 7" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNGVjZGM0Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byA3PC90ZXh0Pgo8L3N2Zz4='">
+                    <img src="perjalanan/perjalanan7.png" alt="Foto Zafran 7" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNGVjZGM0Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Rm90byA3PC90ZXh0Pgo8L3N2Zz4='">
                 </div>
             </div>
         </div>
@@ -1329,6 +1499,28 @@
 <source src="musik.mp4" type="audio/mp4">
 </audio>
 
+<!-- Section 6: About & Photo Gallery -->
+<!-- Section 7: Foto Kenangan Acara Zafran -->
+<section class="section section7">
+    <div class="card">
+      <h3 class="gallery-title">Foto Kenangan</h3>
+      <p class="gallery-description">
+        Momen penuh kenangan dari acara aqiqah Zafran Kaysan Ammar, 
+        terabadikan dalam foto-foto indah yang akan selalu dikenang.
+      </p>
+  
+      <!-- Galeri Running 8 baris -->
+      <div id="runningGallery" class="running-gallery"></div>
+  
+      <!-- Lightbox -->
+      <div id="lightbox" class="lightbox" aria-hidden="true">
+        <img id="lightboxImg" alt="Preview foto" />
+        <button class="lightbox-close" aria-label="Tutup">&times;</button>
+      </div>
+    </div>
+  </section>
+  
+  
 <script>
 // Generate stars
 function createStars() {
@@ -1864,6 +2056,115 @@ document.querySelectorAll('.section').forEach(section => {
     observer.observe(section);
 });
 });
+/*
+  Generator 8 baris × 10 foto.
+  Ganti nama file di generateImageList() kalau nama file kamu beda.
+*/
+(function(){
+  const onErr = "this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZWVlIi8+PHRleHQgeD0iMTAwIiB5PSIxMDAiIGZpbGw9IiM3Nzc3NzciIGZvbnQtc2l6ZT0iMTQiIGtext-anchor=\"middle\" dy=\".3em\">No Image</text></svg>'";
+
+  function generateImageList(){
+    // Otomatis bikin list kenangan1.jpg ... kenangan80.jpg
+    const files = [];
+    for(let i=1;i<=101;i++){
+      files.push(`images/kenangan${i}.jpg`);
+    }
+    return files;
+  }
+
+  function createRow(images, reverse=false, speedSec=28){
+    const row = document.createElement('div');
+    row.className = 'running-row' + (reverse ? ' reverse' : '');
+    row.style.setProperty('--speed', speedSec + 's');
+
+    const track = document.createElement('div');
+    track.className = 'running-track';
+
+    function appendSet(){
+      images.forEach(src=>{
+        const item = document.createElement('div');
+        item.className = 'running-item';
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = src.replace(/\.[^/.]+$/, '').replace(/_/g,' ');
+        img.setAttribute('onerror', onErr);
+
+        // buka lightbox saat klik
+        img.addEventListener('click', ()=> openLightbox(img.src, img.alt));
+        item.appendChild(img);
+        track.appendChild(item);
+      });
+    }
+
+    // Tambah 10 foto
+    appendSet();
+    // Gandakan 1x (jadi 20) untuk loop mulus (animasi sampai -50%)
+    appendSet();
+
+    row.appendChild(track);
+    return row;
+  }
+
+  function buildGallery(){
+    const container = document.getElementById('runningGallery');
+    if(!container) return;
+
+    const all = generateImageList();        // 80 file
+    const rows = 9;
+    const perRow = 10;
+
+    for(let r=0; r<rows; r++){
+      const start = r * perRow;
+      const slice = all.slice(start, start + perRow);
+
+      // arah: baris 1 kanan, baris 2 kiri, selang-seling
+      const reverse = (r % 2 === 0); // true => animasi ke kanan
+      // variasi kecepatan dikit biar dinamis
+      const base = 26 + (r % 3) * 3; // 26s, 29s, 32s selang-seling
+
+      container.appendChild(createRow(slice, reverse, base));
+    }
+  }
+
+  // ===== Lightbox =====
+  const lightbox = {
+    root: null, img: null, btn: null,
+    init(){
+      this.root = document.getElementById('lightbox');
+      this.img  = document.getElementById('lightboxImg');
+      this.btn  = this.root?.querySelector('.lightbox-close');
+      this.root?.addEventListener('click', (e)=>{
+        if(e.target === this.root) this.hide();
+      });
+      this.btn?.addEventListener('click', ()=> this.hide());
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape') this.hide();
+      });
+    },
+    show(src, alt){
+      if(!this.root) return;
+      this.img.src = src;
+      this.img.alt = alt || 'Preview foto';
+      this.root.classList.add('show');
+      this.root.setAttribute('aria-hidden','false');
+    },
+    hide(){
+      if(!this.root) return;
+      this.root.classList.remove('show');
+      this.root.setAttribute('aria-hidden','true');
+      // kecilkan memori preview
+      this.img.removeAttribute('src');
+    }
+  };
+
+  function openLightbox(src, alt){ lightbox.show(src, alt); }
+
+  // boot
+  document.addEventListener('DOMContentLoaded', ()=>{
+    lightbox.init();
+    buildGallery();
+  });
+})();
 </script>
 </body>
 </html>
